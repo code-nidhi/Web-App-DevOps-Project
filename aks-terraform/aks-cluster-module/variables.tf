@@ -39,7 +39,7 @@ variable "vnet_id" {
   type        = string
 }
 
-variable "control-plane-subnet" {
+variable "control_plane_subnet_id" {
   description = "Used to specify the subnet where the control plane components of the AKS cluster will be deployed to."
   type        = string
 }
@@ -49,4 +49,7 @@ variable "worker_node_subnet_id" {
   type        = string
 }
 
-# aks nsg id
+variable "aks_nsg_id" {
+  description = "Used to store the ID of the NSG."
+  type        = string
+}
