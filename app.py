@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 import pyodbc
 import os
 
-# Initialise Flask App
+# Initialise Flask App here
 app = Flask(__name__)
 
 # database connection 
