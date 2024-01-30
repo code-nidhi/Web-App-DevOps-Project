@@ -8,16 +8,16 @@ import os
 from azure.identity import ManagedIdentityCredential
 from azure.keyvault.secrets import SecretClient
 
-key_vault_url = "https://key-vault-aks-cluster.vault.azure.net/"
+key_vault_url = "https://aks-terraform-vault.vault.azure.net/"
 
 # Set up Azure Key Vault client with Managed Identity
 credential = ManagedIdentityCredential()
 secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
 
-secret_database_name = secret_client.get_secret("backend-database-name")
-secret_server_name = secret_client.get_secret("backend-database-server-name")
-secret_server_password = secret_client.get_secret("backend-database-server-password")
-secret_server_username = secret_client.get_secret("backend-database-server-username")
+secret_database_name = secret_client.get_secret("database")
+secret_server_name = secret_client.get_secret("server")
+secret_server_password = secret_client.get_secret("password")
+secret_server_username = secret_client.get_secret("username")
 
 secret_database_name_value = secret_database_name.value
 secret_server_name_value = secret_server_name.value
