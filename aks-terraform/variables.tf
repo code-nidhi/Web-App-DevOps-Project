@@ -10,6 +10,17 @@ variable "client_secret" {
   sensitive   = true
 }
 
+variable "subscription_id" {
+  description = "Subscription id value"
+  type        = string
+  sensitive   = true
+}
+
+variable "tenant_id" {
+  description = "Tenant id value"
+  type        = string
+  sensitive   = true
+}
 
 
 
