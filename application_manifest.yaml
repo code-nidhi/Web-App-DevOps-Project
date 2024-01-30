@@ -15,9 +15,9 @@ spec:
       containers:
         - name: flask-app
           image: nidhi770/custom_image:latest
-          imagePullPolicy: Always
           ports:
           - containerPort: 5000
+      imagePullPolicy: Always
   strategy:
     type: RollingUpdate
     rollingUpdate:
