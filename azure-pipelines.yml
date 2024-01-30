@@ -22,8 +22,7 @@ steps:
   inputs:
     action: 'deploy'
     connectionType: 'azureResourceManager'
-    azureSubscriptionConnection: 'Nidhi Patel DevOps(662a6235-3136-49ac-a29a-1df7effeb963)'
+    azureSubscriptionConnection: 'aks-service-principal'
     azureResourceGroup: 'networking-resource-group'
     kubernetesCluster: 'terraform-aks-cluster'
     manifests: 'application_manifest.yaml'
-    
