@@ -15,6 +15,7 @@ spec:
       containers:
         - name: flask-app
           image: nidhi770/custom_image:latest
+          imagePullPolicy:
           ports:
           - containerPort: 5000
   strategy:
