@@ -1,13 +1,13 @@
-# TODO: Step 1 - Use an official Python runtime as a parent image. You can use `python:3.8-slim`.
+# Use an official Python runtime as a parent image.
 FROM python:3.8-slim
 
-# TODO: Step 2 - Set the working directory in the container
+# Set the working directory in the container - set it to the app we want to run
 WORKDIR /app
 
-# TODO: Step 3 Copy the application files in the container
+# Copy the application files in the container - then the container will have the necessary files
 COPY . /app
 
-# Install system dependencies and ODBC driver
+# Install system dependencies and ODBC driver (ODBC driver is for the backend database)
 RUN apt-get update && apt-get install -y \
     unixodbc unixodbc-dev odbcinst odbcinst1debian2 libpq-dev gcc && \
     apt-get install -y gnupg && \
@@ -22,11 +22,11 @@ RUN apt-get update && apt-get install -y \
 # Install pip and setuptools
 RUN pip install --upgrade pip setuptools
 
-# TODO: Step 4 - Install Python packages specified in requirements.txt
+# Install Python packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt 
 
-# TODO: Step 5 - Expose port 
+# Expose port - this exposes port 5000 in the container
 EXPOSE 5000
 
-# TODO: Step 6 - Define Startup Command
+# Define Startup Command - this runs app.py file
 CMD python app.py
