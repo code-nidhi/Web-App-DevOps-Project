@@ -1,7 +1,7 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment      # This is the Deployment manifest
 metadata:
-  name: flask-app-deployment
+  name: flask-app-deployment      # Can be adjusted, this is the name of the deployment
 spec:
   replicas: 2
   selector:
@@ -14,26 +14,26 @@ spec:
     spec:
       containers:
         - name: flask-app
-          image: nidhi770/custom_image:latest
-          imagePullPolicy: Always
+          image: nidhi770/custom_image:latest       # The format is <Docker username>/<Docker-Hub-image_name>:<version>
+          imagePullPolicy: Always     # The image will be pulled from Docker Hub with every re-build
           ports:
-          - containerPort: 5000
+          - containerPort: 5000       # Port 5000 is exposed in the container
   strategy:
-    type: RollingUpdate
+    type: RollingUpdate     # This is the method by which the cluster is updated
     rollingUpdate:
       maxUnavailable: 1
       maxSurge: 1
       
----
+---      # This operator is needed for terraform to see these as separate manifests
 apiVersion: v1
-kind: Service
+kind: Service           # This is the Service manifest
 metadata:
-  name: flask-app-service
+  name: flask-app-service     # Can be adjusted, this is the name of the service
 spec:
   selector:
-    app: flask-app
+    app: flask-app    # This is the same as the label in the deployment, and specifies pods where traffic will be routed to
   ports:
     - protocol: TCP
       port: 80 # Port for internal communication within the cluster
       targetPort: 5000 # Port exposed by your container
-  type: ClusterIP
+  type: ClusterIP   # This service type distributes traffic within pods in the cluster
